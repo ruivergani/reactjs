@@ -1,6 +1,5 @@
 # React JS Course - Codeboost 
  
-React JS Course Documents
 This repository serves as a comprehensive collection of resources and materials for a React JS course, designed to help you master the art of building dynamic and interactive web applications using React JS.
 
 What's Inside?
