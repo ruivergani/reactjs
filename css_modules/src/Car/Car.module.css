@@ -1,0 +1,11 @@
+/* Criar as classes usando a regra camelCase */
+.nameCar{
+    color: purple;
+    font-size: 40px;
+}
+.description{
+    font-size: 18px;
+    color: grey;
+    line-height: 24px;
+}
+
