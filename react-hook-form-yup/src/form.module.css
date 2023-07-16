@@ -7,6 +7,12 @@
 .formGroup{
     margin-bottom: 1.6rem;
 }
+.formGroup span{
+    color: red;
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1.4rem;
+}
 .formGroup input[type=text],
 .formGroup input[type=email],
 .formGroup input[type=password]{

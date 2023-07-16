@@ -12,7 +12,10 @@ const schema = yup.object({
   // Fields validations
   name: yup.string().required('Name is required'),
   email: yup.string().required('E-mail is required').email('E-mail not valid.'),
-  password: yup.string().required('Password is required').min(6, 'Min 6 charaters')
+  password: yup.string().required('Password is required').min(6, 'Min 6 charaters'),
+  password_confirmation: yup.string().oneOf([
+    null, yup.ref('password')
+  ], 'Password must match')
 }).required(); // Schema is required in the form
 
 export function App() {
@@ -37,25 +40,33 @@ export function App() {
           <input 
             type="text" 
             placeholder="Type your name"
+            {...register("name")}
           />
+          <span>{errors.name?.message}</span>
         </div>
         <div className={formStyles.formGroup}>
           <input 
             type="email" 
             placeholder="Type your e-mail"
+            {...register("email")}
           />
+          <span>{errors.email?.message}</span>
         </div>
         <div className={formStyles.formGroup}>
           <input 
             type="password" 
             placeholder="Type your password"
+            {...register("password")}
           />
+          <span>{errors.password?.message}</span>
         </div>
         <div className={formStyles.formGroup}>
           <input 
             type="password" 
             placeholder="Confirm your password"
+            {...register("password_confirmation")}
           />
+          <span>{errors.password_confirmation?.message}</span>
         </div>
         <button type="submit" className={formStyles.formSubmitButton}>Send Form</button>
       </form>
