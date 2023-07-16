@@ -7,12 +7,6 @@
 .formGroup{
     margin-bottom: 1.6rem;
 }
-.formGroup span{
-    color: red;
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 1.4rem;
-}
 .formGroup input[type=text],
 .formGroup input[type=email],
 .formGroup input[type=password]{
@@ -33,4 +27,22 @@
 }
 .formSubmitButton:hover{
     filter: brightness(0.8);
+}
+.inputError{
+    border: 1px solid red !important;
+}
+.inputError::placeholder{
+    color: red;
+}
+.labelError{
+    color: red;
+    display: block;
+    margin-top: 0.8rem;
+    font-size: 1.2rem;
+}
+.sucessMessage{
+    color: green;
+    display: block;
+    margin-top: 0.8rem;
+    font-size: 1.2rem;
 }
