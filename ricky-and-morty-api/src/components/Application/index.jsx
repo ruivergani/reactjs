@@ -7,9 +7,11 @@ import axios from 'axios';
 // Componente que engloba toda applicacao.
 export function Application(){
 
-    // UseState para listar os resultados no Objeto characters
-    const [characters, setCharacters] = useState([])
-    const [page, setPage] = useState(1)
+    // UseState
+    const [characters, setCharacters] = useState([]) // array de characters API
+    const [page, setPage] = useState(1) // control page number
+    const [countPages, setCountPages] = useState('') // control quantity of pages (hide the button)
+    const [qtdCharacters, setQtdCharacters] = useState('')
 
     // Executa apenas 1 vez na aplicacao
     useEffect(() => {
@@ -19,15 +21,17 @@ export function Application(){
         // array abaixo = [1,2,3,4] (mantem os dados e tras os proximos) => [1,2,3,4,5,6,7]
         const array = [... characters, ... response.data.results] // ... esse operador tras todas as informacoes que ja estao armazenadas (20 primeiros itens)
         setCharacters(array) // salvar dados em characters
+        setCountPages(response.data.info.pages) // quantity of pages
+        setQtdCharacters(response.data.info.count) // quantity of characters
       })
-    }, [page]); // passa o page para executar o useEffect novamente
+    }, [page]); // passa o page para executar o useEffect novamente no onClick
     
     // Component
     return(
         <ContainerApp> 
             <HeaderApp>
                 <h1>Ricky And Morty</h1>
-                <span>Number of Characters: 826</span>
+                <span>Number of Characters: {qtdCharacters}</span>
             </HeaderApp>
             <ContentCharacters>
                 <div>
@@ -45,7 +49,9 @@ export function Application(){
                         })
                     }
                 </div>
-                <button onClick={() => {setPage(page + 1)}}>Load More</button>
+                {
+                    (!(page === countPages)) && <button onClick={() => {setPage(page + 1)}}>Load More</button> // if ternario - enquanto nao for verdadeiro mostra o button
+                }
             </ContentCharacters>
         </ContainerApp>
     )
